@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users
-      resources :haves
-      resources :wants
+      resources :users, param: :user_id
+      resources :owns, only: [:create, :destroy]
+      resources :wants, only: [:create, :destroy]
     end
   end
 
