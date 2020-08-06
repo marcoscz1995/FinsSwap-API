@@ -1,7 +1,7 @@
-class CreateHaves < ActiveRecord::Migration[6.0]
+class CreateOwns < ActiveRecord::Migration[6.0]
   def change
-    create_table :haves do |t|
-      t.string :have_id
+    create_table :owns do |t|
+      t.string :own_id
       t.belongs_to :user, null: false, foreign_key: true
       t.string :course_code
       t.date :event_date

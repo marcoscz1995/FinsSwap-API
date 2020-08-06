@@ -10,9 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_173233) do
+ActiveRecord::Schema.define(version: 2020_08_05_221113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "owns", force: :cascade do |t|
+    t.string "own_id"
+    t.bigint "user_id", null: false
+    t.string "course_code"
+    t.date "event_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_owns_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "wants", force: :cascade do |t|
+    t.string "want_id"
+    t.bigint "user_id", null: false
+    t.string "course_code"
+    t.date "event_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_wants_on_user_id"
+  end
+
+  add_foreign_key "owns", "users"
+  add_foreign_key "wants", "users"
 end

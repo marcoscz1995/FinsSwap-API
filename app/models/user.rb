@@ -1,4 +1,5 @@
 class User < ApplicationRecord
-  has_many :haves
-  has_many :wants
+  validates :password, presence: true
+  validates :email, presence: true,  format: { with: URI::MailTo::EMAIL_REGEXP } 
+  has_many :wants, :owns
 end
