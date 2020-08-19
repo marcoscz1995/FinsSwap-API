@@ -1,5 +1,5 @@
 class OwnSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :user_id, :course_code, :event_date, :start_time, :end_time
+  attributes :user_id, :course_code
   belongs_to :user
 end

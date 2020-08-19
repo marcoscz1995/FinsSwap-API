@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_05_221113) do
+ActiveRecord::Schema.define(version: 2020_08_14_161631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "exams", force: :cascade do |t|
+    t.string "course_code"
+    t.time "start_time"
+    t.time "end_time"
+    t.date "exam_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "markets", force: :cascade do |t|
+    t.string "user"
+    t.string "own"
+    t.string "want"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "ta_email"
+    t.string "ta_give_email"
+    t.string "course_own"
+    t.string "ta_get_email"
+    t.string "course_want"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_matches_on_user_id"
+  end
 
   create_table "owns", force: :cascade do |t|
     t.string "own_id"
@@ -47,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_08_05_221113) do
     t.index ["user_id"], name: "index_wants_on_user_id"
   end
 
+  add_foreign_key "matches", "users"
   add_foreign_key "owns", "users"
   add_foreign_key "wants", "users"
 end

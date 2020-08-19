@@ -18,18 +18,32 @@ for course in course_codes
   courses[course] = [date.strftime("%d/%m/%Y"), time[0], time[1]]
 end
 
+# add courses to DB
+if ENV["exams"]
+  for course in courses
+    Exam.create(
+      course_code: course[0],
+      start_time: course[1][1],
+      end_time: course[1][2],
+      exam_date: course[1][0]
+    )
+  end
+end
+
 # make fake TAs 
 tas = Array.new
 (1..50).each do |id|
   tas.push([id, id.to_s + '@email.ca'])
 end
 # add to db
-for ta in tas
-  User.create(
-    user_id: ta[0],
-    email: ta[1],
-    password: "password"
-  )
+if ENV["users"]
+  for ta in tas
+    User.create(
+      user_id: ta[0],
+      email: ta[1],
+      password: "password"
+    )
+  end
 end
 
 # make fake owns
@@ -43,18 +57,20 @@ end
 
 # add to DB
 own_id = 1
-for ta_own in tas_owns
-  for course in ta_own[1]
-    course_info = courses[course]
-    Own.create(
-      own_id: own_id,
-      user_id: ta_own[0][0],
-      course_code: course,
-      event_date: course_info[0],
-      start_time: course_info[1],
-      end_time: course_info[2]
-    )
-    own_id += 1
+if ENV["owns"]
+  for ta_own in tas_owns
+    for course in ta_own[1]
+      course_info = courses[course]
+      Own.create(
+        own_id: own_id,
+        user_id: ta_own[0][0],
+        course_code: course,
+        event_date: course_info[0],
+        start_time: course_info[1],
+        end_time: course_info[2]
+      )
+      own_id += 1
+    end
   end
 end
 
@@ -75,17 +91,21 @@ for ta in tas
 end
 # add to DB
 wan_id = 1
-for ta_want in tas_wants
-  for course in ta_want[1]
-    course_info = courses[course]
-    Want.create(
-      want_id: wan_id,
-      user_id: ta_want[0][0],
-      course_code: course,
-      event_date: course_info[0],
-      start_time: course_info[1],
-      end_time: course_info[2]
-    )
-    wan_id += 1
+if ENV["wants"]
+  for ta_want in tas_wants
+    for course in ta_want[1]
+      course_info = courses[course]
+      Want.create(
+        want_id: wan_id,
+        user_id: ta_want[0][0],
+        course_code: course,
+        event_date: course_info[0],
+        start_time: course_info[1],
+        end_time: course_info[2]
+      )
+      wan_id += 1
+    end
   end
 end
+
+

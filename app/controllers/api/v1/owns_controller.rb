@@ -25,7 +25,7 @@ module Api
       private
 
       def own_params
-        params.require(:own).permit(:user_id, :course_code, :event_date, :start_time, :end_time)
+        params.require(:own).permit(:user_id, :course_code)
       end
     end
   end

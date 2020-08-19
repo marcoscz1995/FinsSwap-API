@@ -1,9 +1,8 @@
 module Api
   module V1
-  class UsersController < ApplicationController
+  class MatchesController < ApplicationController
       def index
-        users = User.all
-        `python /home/cos/finswap/match-algo/test_rails_python_connection.py`
+        matches = User.all
 
         render json: UserSerializer.new(users, options).serialized_json
       end

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  ta_email: MyString
+  ta_give_email: MyString
+  course_own: MyString
+  ta_get_email: MyString
+  course_want: MyString
+
+two:
+  user: two
+  ta_email: MyString
+  ta_give_email: MyString
+  course_own: MyString
+  ta_get_email: MyString
+  course_want: MyString
