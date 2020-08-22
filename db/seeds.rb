@@ -10,7 +10,7 @@ for i in exam_starts
 end
 
 times = start_time.zip(end_time)
-course_codes = [*200..230].map { |number| "math#{number.to_s}" }
+course_codes = [*200..210].map { |number| "math#{number.to_s}" }
 courses = {} 
 for course in course_codes
   time = times.sample
@@ -32,7 +32,7 @@ end
 
 # make fake TAs 
 tas = Array.new
-(1..50).each do |id|
+(1..10).each do |id|
   tas.push([id, id.to_s + '@email.ca'])
 end
 # add to db
@@ -41,7 +41,7 @@ if ENV["users"]
     User.create(
       user_id: ta[0],
       email: ta[1],
-      password: "password"
+      password_digest: "password"
     )
   end
 end
