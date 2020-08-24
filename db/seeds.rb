@@ -19,7 +19,7 @@ for course in course_codes
 end
 
 # add courses to DB
-if ENV["exams"]
+if ENV["all"]
   for course in courses
     Exam.create(
       course_code: course[0],
@@ -36,7 +36,7 @@ tas = Array.new
   tas.push([id, id.to_s + '@email.ca'])
 end
 # add to db
-if ENV["users"]
+if ENV["all"]
   for ta in tas
     User.create(
       user_id: ta[0],
@@ -57,7 +57,7 @@ end
 
 # add to DB
 own_id = 1
-if ENV["owns"]
+if ENV["all"]
   for ta_own in tas_owns
     for course in ta_own[1]
       course_info = courses[course]
@@ -91,7 +91,7 @@ for ta in tas
 end
 # add to DB
 wan_id = 1
-if ENV["wants"]
+if ENV["all"]
   for ta_want in tas_wants
     for course in ta_want[1]
       course_info = courses[course]
