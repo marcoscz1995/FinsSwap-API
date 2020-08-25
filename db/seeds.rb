@@ -108,4 +108,5 @@ if ENV["all"]
   end
 end
 
-
+# add default to algorithms
+Algorithm.create(run: false)

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :exams, param: :course_code
       resources :owns, only: [:create, :destroy]
       resources :wants, only: [:create, :destroy]
+      resources :algorithms
     end
   end
 
